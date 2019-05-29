@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:maps="clr-namespace:Xamarin.Forms.GoogleMaps;assembly=Xamarin.Forms.GoogleMaps"
+             x:Class="LocateMe.Page.MapPage" Padding="10">
+    <ContentPage.Content>
+        <!--MainLayout-->
+        <StackLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+            <!--MapLayout-->
+            <StackLayout VerticalOptions="FillAndExpand" 
+                         HorizontalOptions="FillAndExpand" >
+                <!--Map-->
+                <maps:Map x:Name="MyMap" 
+                          VerticalOptions="FillAndExpand" 
+                          HorizontalOptions="FillAndExpand"        
+                          IsShowingUser="True" 
+                          MapLongClicked="MyMap_MapLongClicked"/>
+            </StackLayout>
+
+            <!--PopupLayout-->
+            <StackLayout x:Name="popup" VerticalOptions="End">
+                <Image Source="cancel" 
+                       VerticalOptions="StartAndExpand" 
+                       HorizontalOptions="End"
+                       HeightRequest="40"
+                       WidthRequest="40">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer
+                            Tapped="CancelTapped"
+                            NumberOfTapsRequired="1" />
+                    </Image.GestureRecognizers>
+                </Image>
+                
+                <!--Latitude and Longitude Label-->
+                <StackLayout x:Name="StackPositionlayout" Orientation="Horizontal" VerticalOptions="Start">
+                    <Label Text="Latitude : " FontSize="Medium"/>
+                    <Label x:Name="latitude" Text="{Binding LatitudeLabel}" HorizontalOptions="FillAndExpand"/>
+                </StackLayout>
+                <StackLayout Orientation="Horizontal" VerticalOptions="Start">
+                    <Label Text="Longitude : " FontSize="Medium"/>
+                    <Label x:Name="longitute" Text="{Binding LongitudeLabel}"   HorizontalOptions="FillAndExpand"/>
+                </StackLayout>
+            </StackLayout>
+            <!--Add Location with name Layout-->
+            <StackLayout x:Name="StackNameLayout" VerticalOptions="End">
+                <StackLayout  Orientation="Horizontal">
+                    <Label Text="Name : "/>
+                    <Entry x:Name="nameEntry" HorizontalOptions="FillAndExpand"/>
+                </StackLayout>
+                <Button Text="Save" Clicked="SaveButtonClicked" HorizontalOptions="CenterAndExpand"/>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
